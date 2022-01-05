@@ -1,74 +1,137 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { userModal } from "../models/PostModal";
+import { EmployeesModal, IEmployeesModal } from "../models/PostModal";
 import Button from "@mui/material/Button";
-import ModalPopup from "../components/ModalPopup";
+import UserModalPopup from "../components/UserModalPopup";
+import UserServices from "../services/users-services";
+import { useSelector } from "react-redux";
 
 const AdminTable = () => {
-  const [posts, setPosts] = useState<userModal[]>();
+  const [employees, setEmployees] = useState<IEmployeesModal[]>();
+
+  const [editEmployees, setEditEmployees] =
+    useState<IEmployeesModal>(EmployeesModal);
+  const userService = new UserServices();
+  const [open, setOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const userLogin = useSelector((state: any): any => state.userLogin);
+  const { userInfo } = userLogin;
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/comments")
-      .then((response) => response.json())
-      .then((json: userModal[]) => setPosts(json));
-  }, []);
+    if (!userInfo) {
+      navigate("/");
+    }
+  });
+
+  const getUsers = () => {
+    userService
+      .getUsers()
+      .then((res: any) => {
+        setEmployees(res.data);
+      })
+      .catch((m: any) => {
+        console.log(m);
+      });
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, [open]);
 
   const deleteHandler = (id: number) => {
-    fetch(`https://jsonplaceholder.typicode.com/comments/${id}`, {
-      method: "DELETE",
-    });
+    userService
+      .deleteUsersById(id)
+      .then((res: any) => {
+        getUsers();
+      })
+      .catch((m: any) => {
+        console.log(m);
+      });
+  };
+
+  const updateEmployeeInfo = (id: number) => {
+    userService
+      .getUsersById(id)
+      .then((res: any) => {
+        setEditEmployees(res.data);
+        setOpen(true);
+      })
+      .catch((m: any) => {
+        console.log(m);
+      });
   };
 
   return (
     <>
       <h1>List of Users</h1>
-      <ModalPopup />
+      <Button
+        className="btn add-btn"
+        onClick={() => {
+          setEditEmployees(EmployeesModal);
+          setOpen(true);
+        }}
+      >
+        Add User
+      </Button>
+      <UserModalPopup
+        data={editEmployees}
+        setOpen={() => setOpen(false)}
+        open={open}
+      />
+      ;
       <TableContainer>
         <Table sx={{ maxWidth: 750 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell align="left">USERS</TableCell>
-              <TableCell align="left"></TableCell>
+              <TableCell align="left">NAME</TableCell>
+              <TableCell align="left">EMAIL</TableCell>
+              <TableCell align="left">ADDRESS</TableCell>
               <TableCell align="right">ACTIONS</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {posts &&
-              posts.map((post: userModal) => (
+            {employees &&
+              employees.map((employee: IEmployeesModal) => (
                 <TableRow
-                  key={post.id}
+                  key={employee.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {post.postId}
+                    {employee.id}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    {post.email}
+                    {employee.name}
                   </TableCell>
                   <TableCell component="th" scope="row">
+                    {employee.email}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {employee.address}
+                  </TableCell>
+                  {/* <TableCell component="th" scope="row">
                     <Button className="btn btn-login text-center">
-                      <Link to={`/post/${post.postId}`}>View Post</Link>
+                      <Link to={`/employee/${employee.postId}`}>View Post</Link>
                     </Button>
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell align="right">
-                    <Button className="btn btn-login text-center">
+                    <Button
+                      className="btn"
+                      onClick={() => updateEmployeeInfo(employee.id)}
+                    >
                       <EditIcon />
                     </Button>
                     <Button
-                      className="btn btn-login text-center"
-                      onClick={() => deleteHandler(post.id)}
+                      className="btn"
+                      onClick={() => deleteHandler(employee.id)}
                     >
                       <DeleteIcon />
                     </Button>

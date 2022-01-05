@@ -46,7 +46,186 @@ code {
   width: 400;
   background-color: white;
   border: 2px solid #000;
-  box-Shadow: 24;
+  box-shadow: 24;
   padding: 15px;
 }
+.post-card .clear-btn {
+  color: #918a8a !important;
+  float: right;
+  padding: 6px;
+  min-width: 32px;
+  border-radius: 18px;
+}
+.post-content {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.header-container {
+  display: block !important;
+  padding: 25px;
+  margin: -8px;
+  background-color: #3a3630;
+}
+.header-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-content div {
+  display: flex;
+  align-items: center;
+}
+.header-content div a {
+  text-decoration: none;
+  padding: 0 50px;
+  color: white;
+}
+.search-products div {
+  background-color: aliceblue;
+}
+.search-btn {
+  border: 1px solid green !important;
+  padding: 15px !important;
+  margin-left: 10px !important;
+  color: green !important;
+}
 
+.login-input {
+  margin: 10px 0 !important;
+}
+.btn-login {
+  background-color: #79abdd !important;
+  width: 100%;
+  height: 48px;
+  border-radius: 2px;
+  color: #fff;
+}
+.add-btn {
+  background-color: #79abdd !important;
+  width: 134px;
+  height: 48px;
+  border-radius: 2px;
+  color: #fff;
+}
+.post-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.comments-layout {
+  display: flex;
+  margin: 15px 0;
+  border-bottom: 2px solid #c2c1c1;
+}
+.comment-form{
+  display: flex;
+  align-items: center;
+}
+.likes {
+  display: flex;
+  align-items: flex-end;
+  font-size: 20px;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+}
+.login-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #3a3630;
+  max-width: fit-content;
+  margin: 25px;
+  padding: 20px;
+}
+.login-content h2 {
+  font-size: 22px;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+.login-content .MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 1px solid #fff;
+}
+.login-content .MuiInputBase-input {
+  color: #fff;
+}
+.login-content .MuiInput-underline:before {
+  border-bottom-color: #fff;
+}
+.login-content .MuiInput-underline:after {
+  border-bottom-color: #fff;
+}
+.login-content .MuiFormLabel-root {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+  font-weight: normal;
+  background-color: transparent;
+}
+.login-content .MuiFormLabel-root.Mui-focused {
+  color: #fff;
+}
+.login-components .MuiFormLabel-root,
+.login-components .MuiButton-label {
+  font-family: "Comfortaa", sans-serif !important;
+}
+.login-content .login-input {
+  width: 374px;
+  margin-bottom: 30px;
+}
+.login-actions {
+  display: flex;
+  justify-content: space-between;
+}
+.forgot-password {
+  font-size: 14px;
+  font-weight: normal;
+  color: #67a5da;
+  line-height: 16px;
+}
+.forgot-password:hover {
+  color: #95c0e5;
+}
+.forgot-password:active {
+  color: #c2dbf0;
+}
+.login-content .MuiButton-root {
+  color: #0057a1;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: bold;
+}
+.login-content .MuiButton-root:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.login-content .login-btn {
+  background-color: #fff;
+  background-color: #fff;
+  width: 134px;
+  height: 48px;
+  border-radius: 2px;
+}
+.login-content p {
+  color: #67a5da;
+  font-size: 14px;
+  padding: 50px 0 80px;
+}
+.sign-up {
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+.sign-up:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+.sign-up:active {
+  color: rgba(255, 255, 255, 0.3);
+}

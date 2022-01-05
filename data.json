@@ -1,0 +1,149 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "1 to make a blinded choice to reject or provident to task",
+      "body": "since he receives and receives the accepted consequences, unencumbered",
+      "likes": 5,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "2 to make a blinded choice to reject or provident to task",
+      "body": "since he receives and receives the accepted consequences, unencumbered",
+      "likes": 5,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "title": "3 to make a blinded choice to reject or provident to task",
+      "body": "since he receives and receives the accepted consequences, unencumbered",
+      "likes": 5,
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "title": "4 to make a blinded choice to reject or provident to task",
+      "body": "since he receives and receives the accepted consequences, unencumbered",
+      "likes": 20,
+      "userId": 2
+    },
+    {
+      "id": 5,
+      "title": "5 to make a blinded choice to reject or provident to task",
+      "body": "since he receives and receives the accepted consequences, unencumbered",
+      "likes": 20,
+      "userId": 1
+    },
+    {
+      "body": "India is greatest country",
+      "id": 6,
+      "likes": 0,
+      "title": "India",
+      "userId": 7
+    }
+  ],
+  "comments": [
+    {
+      "postId": 1,
+      "id": 1,
+      "email": "kalariyasunny23@gmail.com",
+      "name": "Sunny Kalariya",
+      "body": "India is my country"
+    },
+    {
+      "postId": 1,
+      "id": 2,
+      "email": "kalariyasunny23@gmail.com",
+      "name": "Sunny Kalariya",
+      "body": "India is my country"
+    },
+    {
+      "id": 4,
+      "email": "Eliseo@gardner.biz",
+      "name": "Brett",
+      "body": "the pleasure itself, the moment in which the pain needs to be heard, and for the wise man who accuses him",
+      "postId": 2
+    },
+    {
+      "id": 5,
+      "email": "Eliseo@gardner.biz",
+      "name": "Brett",
+      "body": "the pleasure itself, the moment in which the pain needs to be heard, and for the wise man who accuses him",
+      "postId": 3
+    },
+    {
+      "id": 6,
+      "email": "kalariyasunny23@gmail.com",
+      "name": "Sunny Kalariya",
+      "body": "India is my country",
+      "postId": 6
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "Fenny",
+      "address": "Ahmedabad",
+      "email": "fenny@gmail.com",
+      "password": "12345",
+      "authorization": "User"
+    },
+    {
+      "id": 2,
+      "name": "Meera",
+      "address": "Ahmedabad",
+      "email": "meera@gmail.com",
+      "password": "12345",
+      "authorization": "User"
+    },
+    {
+      "id": 3,
+      "name": "Sunny patel",
+      "address": "Surat",
+      "email": "sunny@gmail.com",
+      "password": "12345",
+      "authorization": "User"
+    },
+    {
+      "id": 4,
+      "name": "Hetvi",
+      "address": "Surat",
+      "email": "hetvi@gmail.com",
+      "password": "12345",
+      "authorization": "User"
+    },
+    {
+      "id": 5,
+      "name": "Dev",
+      "address": "Mumbai",
+      "email": "dev@gmail.com",
+      "password": "12345",
+      "authorization": "User"
+    },
+    {
+      "name": "Drashti",
+      "address": "Bhavnagar",
+      "email": "drashti@gmail.com",
+      "id": 6,
+      "password": "12345",
+      "authorization": "User"
+    },
+    {
+      "name": "Sunny Kalariya",
+      "email": "kalariyasunny23@gmail.com",
+      "address": "Dhoraji",
+      "id": 7,
+      "password": "12345",
+      "authorization": "Admin"
+    },
+    {
+      "name": "Amana Godhasra",
+      "email": "aman@gmail.com",
+      "address": "Rajkot",
+      "id": 8,
+      "password": "12345",
+      "authorization": "User"
+    }
+  ]
+}
