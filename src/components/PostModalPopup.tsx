@@ -13,7 +13,7 @@ interface OwnProps {
   open: boolean;
 }
 
-const UserModalPopup: React.FC<OwnProps> = ({ setOpen, open }) => {
+const PostModalPopup: React.FC<OwnProps> = ({ setOpen, open }) => {
   const postService = new PostServices();
   const [postInfo, setPostInfo] = useState<IPostModal>(PostModal);
 
@@ -22,6 +22,7 @@ const UserModalPopup: React.FC<OwnProps> = ({ setOpen, open }) => {
 
   const submitHandler = () => {
     postInfo.userId = userInfo.id;
+    postInfo.liked = [];
     setPostInfo(postInfo);
     postService
       .addPost(postInfo)
@@ -96,4 +97,4 @@ const UserModalPopup: React.FC<OwnProps> = ({ setOpen, open }) => {
   );
 };
 
-export default UserModalPopup;
+export default PostModalPopup;

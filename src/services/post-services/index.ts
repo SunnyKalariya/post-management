@@ -10,9 +10,11 @@ class PostServices {
     }
   };
 
-  getPostById = async (id: number): Promise<any> => {
+  getPostByUserId = async (userId: number): Promise<any> => {
     try {
-      const response = await axios.get(`http://localhost:3001/posts/${id}`);
+      const response = await axios.get(
+        `http://localhost:3001/posts?userId=${userId}`
+      );
       return response;
     } catch (error) {
       console.log(error);

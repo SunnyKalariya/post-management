@@ -11,13 +11,12 @@ import { EmployeesModal } from "../models/PostModal";
 const LoginScreen = () => {
   const [loginInfo, setLoginInfo] = useState({ email: "", password: "" });
   const [open, setOpen] = useState<boolean>(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const submitHandler = () => {
-    dispatch(login(loginInfo.email, loginInfo.password));
+    dispatch(login(loginInfo.email, loginInfo.password ,navigate));
     setLoginInfo({ email: "", password: "" });
-    navigate("/post");
   };
 
   return (
@@ -72,10 +71,7 @@ const LoginScreen = () => {
               >
                 LOGIN{" "}
               </Button>
-              <Button
-                className="forgot-password"
-                onClick={() => setOpen(true)}
-              >
+              <Button className="forgot-password" onClick={() => setOpen(true)}>
                 New User? Register
               </Button>
               <UserModalPopup

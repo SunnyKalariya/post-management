@@ -11,7 +11,7 @@ interface OwnProps {
   getComments: () => void;
 }
 
-const CommentModalPopup: React.FC<OwnProps> = ({ data, getComments }) => {
+const CommentInput: React.FC<OwnProps> = ({ data, getComments }) => {
   const postService = new PostServices();
   const [commentInfo, setCommentInfo] = useState<IComments>(Commnets);
 
@@ -64,4 +64,4 @@ const CommentModalPopup: React.FC<OwnProps> = ({ data, getComments }) => {
   );
 };
 
-export default CommentModalPopup;
+export default CommentInput;

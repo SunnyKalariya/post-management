@@ -14,7 +14,7 @@ import UserModalPopup from "../components/UserModalPopup";
 import UserServices from "../services/users-services";
 import { useSelector } from "react-redux";
 
-const AdminTable = () => {
+const AdminScreen = () => {
   const [employees, setEmployees] = useState<IEmployeesModal[]>();
 
   const [editEmployees, setEditEmployees] =
@@ -71,30 +71,32 @@ const AdminTable = () => {
 
   return (
     <>
-      <h1>List of Users</h1>
-      <Button
-        className="btn add-btn"
-        onClick={() => {
-          setEditEmployees(EmployeesModal);
-          setOpen(true);
-        }}
-      >
-        Add User
-      </Button>
+      <div className="admin-heading">
+        <h1>List of Users</h1>
+        <Button
+          className="btn add-btn"
+          onClick={() => {
+            setEditEmployees(EmployeesModal);
+            setOpen(true);
+          }}
+        >
+          Add User
+        </Button>
+      </div>
       <UserModalPopup
         data={editEmployees}
         setOpen={() => setOpen(false)}
         open={open}
       />
-      ;
       <TableContainer>
-        <Table sx={{ maxWidth: 750 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
               <TableCell align="left">NAME</TableCell>
               <TableCell align="left">EMAIL</TableCell>
               <TableCell align="left">ADDRESS</TableCell>
+              <TableCell align="left"></TableCell>
               <TableCell align="right">ACTIONS</TableCell>
             </TableRow>
           </TableHead>
@@ -117,11 +119,11 @@ const AdminTable = () => {
                   <TableCell component="th" scope="row">
                     {employee.address}
                   </TableCell>
-                  {/* <TableCell component="th" scope="row">
+                  <TableCell component="th" scope="row">
                     <Button className="btn btn-login text-center">
-                      <Link to={`/employee/${employee.postId}`}>View Post</Link>
+                      <Link to={`/profile/${employee.id}`}>View Post</Link>
                     </Button>
-                  </TableCell> */}
+                  </TableCell>
                   <TableCell align="right">
                     <Button
                       className="btn"
@@ -145,4 +147,4 @@ const AdminTable = () => {
   );
 };
 
-export default AdminTable;
+export default AdminScreen;

@@ -4,43 +4,65 @@
       "id": 1,
       "title": "1 to make a blinded choice to reject or provident to task",
       "body": "since he receives and receives the accepted consequences, unencumbered",
-      "likes": 5,
-      "userId": 1
+      "likes": 0,
+      "userId": 1,
+      "liked": []
     },
     {
       "id": 2,
       "title": "2 to make a blinded choice to reject or provident to task",
       "body": "since he receives and receives the accepted consequences, unencumbered",
-      "likes": 5,
-      "userId": 1
+      "likes": 0,
+      "userId": 1,
+      "liked": []
     },
     {
       "id": 3,
       "title": "3 to make a blinded choice to reject or provident to task",
       "body": "since he receives and receives the accepted consequences, unencumbered",
-      "likes": 5,
-      "userId": 1
+      "likes": 0,
+      "userId": 1,
+      "liked": []
     },
     {
       "id": 4,
       "title": "4 to make a blinded choice to reject or provident to task",
       "body": "since he receives and receives the accepted consequences, unencumbered",
-      "likes": 20,
-      "userId": 2
+      "likes": 0,
+      "userId": 2,
+      "liked": []
     },
     {
       "id": 5,
       "title": "5 to make a blinded choice to reject or provident to task",
       "body": "since he receives and receives the accepted consequences, unencumbered",
-      "likes": 20,
-      "userId": 1
+      "likes": 2,
+      "userId": 1,
+      "liked": [
+        8,
+        7
+      ]
     },
     {
-      "body": "India is greatest country",
+      "body": "India is my country ",
       "id": 6,
-      "likes": 0,
+      "likes": 2,
       "title": "India",
-      "userId": 7
+      "userId": 8,
+      "liked": [
+        8,
+        7
+      ]
+    },
+    {
+      "body": "since he receives and receives the accepted consequences, unencumbered",
+      "id": 7,
+      "likes": 1,
+      "title": " to make a blinded choice to reject or provident to task",
+      "userId": 8,
+      "liked": [
+        8
+      ]
     }
   ],
   "comments": [
@@ -71,13 +93,6 @@
       "name": "Brett",
       "body": "the pleasure itself, the moment in which the pain needs to be heard, and for the wise man who accuses him",
       "postId": 3
-    },
-    {
-      "id": 6,
-      "email": "kalariyasunny23@gmail.com",
-      "name": "Sunny Kalariya",
-      "body": "India is my country",
-      "postId": 6
     }
   ],
   "employees": [
@@ -130,20 +145,40 @@
       "authorization": "User"
     },
     {
-      "name": "Sunny Kalariya",
-      "email": "kalariyasunny23@gmail.com",
-      "address": "Dhoraji",
-      "id": 7,
-      "password": "12345",
-      "authorization": "Admin"
-    },
-    {
       "name": "Amana Godhasra",
       "email": "aman@gmail.com",
       "address": "Rajkot",
-      "id": 8,
+      "id": 7,
       "password": "12345",
       "authorization": "User"
+    },
+    {
+      "name": "Sunny Kalariya",
+      "email": "kalariyasunny23@gmail.com",
+      "address": "Dhoraji",
+      "id": 8,
+      "password": "12345",
+      "authorization": "Admin"
+    }
+  ],
+  "likes": [
+    {
+      "isLiked": true,
+      "postId": 7,
+      "userId": 8,
+      "id": 1
+    },
+    {
+      "isLiked": true,
+      "postId": 6,
+      "userId": 8,
+      "id": 3
+    },
+    {
+      "isLiked": true,
+      "postId": 5,
+      "userId": 8,
+      "id": 4
     }
   ]
 }

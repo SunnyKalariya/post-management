@@ -11,19 +11,25 @@ import MenuItem from "@mui/material/MenuItem";
 import { IEmployeesModal } from "../../models/PostModal";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../actions/userActions";
+import { useNavigate } from "react-router";
 
 const Header = () => {
   const [userLoginInfo, setUserLoginInfo] = useState<IEmployeesModal>();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [anchorProfileEl, setProfileAnchorEl] = useState<null | HTMLElement>(
     null
   );
   const openProfile = Boolean(anchorProfileEl);
   const userLogin = useSelector((state: any): any => state.userLogin);
   const { userInfo } = userLogin;
+
   useEffect(() => {
     if (userInfo) {
       setUserLoginInfo(userInfo);
+    }
+    else{
+      navigate('/');
     }
   }, [userInfo]);
 
@@ -52,6 +58,7 @@ const Header = () => {
                 <Button
                   aria-haspopup="true"
                   aria-expanded={openProfile ? "true" : undefined}
+                  className="login-person"
                   onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
                     setProfileAnchorEl(event.currentTarget)
                   }
@@ -75,7 +82,7 @@ const Header = () => {
                       </MenuItem>
                     </Link>
                   )}
-                  <Link href="/profile">
+                  <Link href={`/profile/${userLoginInfo.id}`}>
                     <MenuItem>
                       <PersonIcon />
                       Profile

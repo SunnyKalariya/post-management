@@ -4,19 +4,28 @@ import Rating from "@mui/material/Rating";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Button from "@mui/material/Button";
-import { IComments, IPostModal } from "../models/PostModal";
+import {
+  IComments,
+  IPostModal,
+} from "../models/PostModal";
 import Delete from "@mui/icons-material/Delete";
 import PostServices from "../services/post-services";
-import CommentModalPopup from "./CommentModalPopup";
+import CommentModalPopup from "./CommentInput";
 
 interface OwnProps {
   data: IPostModal;
+  userId: number;
 }
 
-const CommentPopper: React.FC<OwnProps> = ({ data }) => {
+const CommentPopper: React.FC<OwnProps> = ({
+  data,
+  userId,
+}) => {
   const [commentOpen, setCommentOpen] = useState<boolean>(false);
   const [comments, setComments] = useState<IComments[]>();
+  const [post, setPost] = useState<IPostModal>(data);
   const postService = new PostServices();
+  const isLike = data.liked.find((x): any => x === userId);
 
   const getComments = () => {
     postService
@@ -28,6 +37,7 @@ const CommentPopper: React.FC<OwnProps> = ({ data }) => {
         console.log(m);
       });
   };
+
   useEffect(() => {
     getComments();
   }, []);
@@ -37,6 +47,28 @@ const CommentPopper: React.FC<OwnProps> = ({ data }) => {
       .deleteCommentsByPostId(id)
       .then((res: any) => getComments())
       .catch((error) => console.error(error));
+  };
+
+  const updatePost = (postData: IPostModal) => {
+    postService
+      .updatePost(postData)
+      .then((response) => {
+      setPost(response.data);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const likeHandler = () => {
+    !isLike && data.liked.push(userId);
+    if (isLike) {
+      var index = data.liked.indexOf(isLike);
+      if (index !== -1) {
+        data.liked.splice(index, 1);
+      }
+    }
+
+    data.likes += isLike ? -1 : 1;
+    updatePost(data);
   };
 
   const comment = (
@@ -63,13 +95,14 @@ const CommentPopper: React.FC<OwnProps> = ({ data }) => {
           <Rating
             name="customized-color"
             className="rating"
-            defaultValue={0}
+            value={isLike ? 1 : 0}
             getLabelText={(value) => `${value} Heart${value !== 1 ? "s" : ""}`}
             max={1}
             icon={<FavoriteIcon fontSize="inherit" />}
             emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+            onChange={likeHandler}
           />
-          {/* {post.likes} */}
+          {data.likes}
         </div>
         <Button
           variant="contained"
