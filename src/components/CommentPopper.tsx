@@ -12,6 +12,7 @@ import Delete from "@mui/icons-material/Delete";
 import PostServices from "../services/post-services";
 import CommentModalPopup from "./CommentInput";
 
+
 interface OwnProps {
   data: IPostModal;
   userId: number;
@@ -66,7 +67,7 @@ const CommentPopper: React.FC<OwnProps> = ({
         data.liked.splice(index, 1);
       }
     }
-
+debugger;
     data.likes += isLike ? -1 : 1;
     updatePost(data);
   };

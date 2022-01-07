@@ -50,6 +50,22 @@ const PostModalPopup: React.FC<OwnProps> = ({ setOpen, open }) => {
           <form>
             <div className="form-group">
               <TextField
+                value={postInfo.images}
+                id="title"
+                type="file"
+                name="images"
+                variant="outlined"
+                className="login-input"
+                onChange={(e) =>
+                  setPostInfo({
+                    ...postInfo,
+                    [e.target.name]: [e.target.value],
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <TextField
                 value={postInfo.title}
                 id="title"
                 type="text"

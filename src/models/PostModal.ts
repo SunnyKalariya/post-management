@@ -30,6 +30,7 @@ export interface IPostModal {
   title: string;
   userId: number;
   liked: number[];
+  images:string[];
 }
 
 export const PostModal: IPostModal = {
@@ -39,6 +40,7 @@ export const PostModal: IPostModal = {
   title: "",
   userId: 0,
   liked: [],
+  images: [],
 };
 
 export interface IComments {

@@ -6,41 +6,56 @@
       "body": "since he receives and receives the accepted consequences, unencumbered",
       "likes": 0,
       "userId": 1,
-      "liked": []
+      "liked": [],
+      "images": [
+        "/images/image1.jpg","/images/image1.jpg","/images/image1.jpg"
+      ]
     },
     {
       "id": 2,
       "title": "2 to make a blinded choice to reject or provident to task",
       "body": "since he receives and receives the accepted consequences, unencumbered",
       "likes": 0,
-      "userId": 1,
-      "liked": []
+      "userId": 2,
+      "liked": [],
+      "images": [
+        "/images/image1.jpg"
+      ]
     },
     {
       "id": 3,
       "title": "3 to make a blinded choice to reject or provident to task",
       "body": "since he receives and receives the accepted consequences, unencumbered",
       "likes": 0,
-      "userId": 1,
-      "liked": []
+      "userId": 3,
+      "liked": [],
+      "images": [
+        "/images/image1.jpg"
+      ]
     },
     {
       "id": 4,
       "title": "4 to make a blinded choice to reject or provident to task",
       "body": "since he receives and receives the accepted consequences, unencumbered",
       "likes": 0,
-      "userId": 2,
-      "liked": []
+      "userId": 4,
+      "liked": [],
+      "images": [
+        "/images/image1.jpg"
+      ]
     },
     {
       "id": 5,
       "title": "5 to make a blinded choice to reject or provident to task",
       "body": "since he receives and receives the accepted consequences, unencumbered",
       "likes": 2,
-      "userId": 1,
+      "userId": 5,
       "liked": [
         8,
         7
+      ],
+      "images": [
+        "/images/image1.jpg"
       ]
     },
     {
@@ -49,6 +64,9 @@
       "likes": 2,
       "title": "India",
       "userId": 8,
+      "images": [
+        "/images/image1.jpg"
+      ],
       "liked": [
         8,
         7
@@ -60,6 +78,9 @@
       "likes": 1,
       "title": " to make a blinded choice to reject or provident to task",
       "userId": 8,
+      "images": [
+        "/images/image1.jpg"
+      ],
       "liked": [
         8
       ]
