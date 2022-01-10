@@ -8,7 +8,9 @@
       "userId": 1,
       "liked": [],
       "images": [
-        "/images/image1.jpg","/images/image1.jpg","/images/image1.jpg"
+        "/images/image1.jpg",
+        "/images/image1.jpg",
+        "/images/image1.jpg"
       ]
     },
     {
@@ -123,7 +125,8 @@
       "address": "Ahmedabad",
       "email": "fenny@gmail.com",
       "password": "12345",
-      "authorization": "User"
+      "authorization": "User",
+      "profileImg": "/images/image1.jpg"
     },
     {
       "id": 2,
@@ -131,7 +134,8 @@
       "address": "Ahmedabad",
       "email": "meera@gmail.com",
       "password": "12345",
-      "authorization": "User"
+      "authorization": "User",
+      "profileImg": "/images/image1.jpg"
     },
     {
       "id": 3,
@@ -139,7 +143,8 @@
       "address": "Surat",
       "email": "sunny@gmail.com",
       "password": "12345",
-      "authorization": "User"
+      "authorization": "User",
+      "profileImg": "/images/image1.jpg"
     },
     {
       "id": 4,
@@ -147,7 +152,8 @@
       "address": "Surat",
       "email": "hetvi@gmail.com",
       "password": "12345",
-      "authorization": "User"
+      "authorization": "User",
+      "profileImg": "/images/image1.jpg"
     },
     {
       "id": 5,
@@ -155,7 +161,8 @@
       "address": "Mumbai",
       "email": "dev@gmail.com",
       "password": "12345",
-      "authorization": "User"
+      "authorization": "User",
+      "profileImg": "/images/image1.jpg"
     },
     {
       "name": "Drashti",
@@ -163,7 +170,8 @@
       "email": "drashti@gmail.com",
       "id": 6,
       "password": "12345",
-      "authorization": "User"
+      "authorization": "User",
+      "profileImg": "/images/image1.jpg"
     },
     {
       "name": "Amana Godhasra",
@@ -171,7 +179,8 @@
       "address": "Rajkot",
       "id": 7,
       "password": "12345",
-      "authorization": "User"
+      "authorization": "User",
+      "profileImg": "/images/image1.jpg"
     },
     {
       "name": "Sunny Kalariya",
@@ -179,27 +188,17 @@
       "address": "Dhoraji",
       "id": 8,
       "password": "12345",
-      "authorization": "Admin"
-    }
-  ],
-  "likes": [
-    {
-      "isLiked": true,
-      "postId": 7,
-      "userId": 8,
-      "id": 1
+      "authorization": "Admin",
+      "profileImg": "/images/image1.jpg"
     },
     {
-      "isLiked": true,
-      "postId": 6,
-      "userId": 8,
-      "id": 3
-    },
-    {
-      "isLiked": true,
-      "postId": 5,
-      "userId": 8,
-      "id": 4
+      "name": "mihir",
+      "email": "mihirmavani11@gmail.com",
+      "address": "Dhoraji",
+      "id": 9,
+      "password": "12345",
+      "authorization": "Admin",
+      "profileImg": "C:/fakepath/image1.jpg"
     }
   ]
 }

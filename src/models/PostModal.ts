@@ -13,6 +13,7 @@ export interface IEmployeesModal {
   address: string;
   password: string;
   authorization: string;
+  profileImg: string;
 }
 export const EmployeesModal: IEmployeesModal = {
   name: "",
@@ -21,6 +22,7 @@ export const EmployeesModal: IEmployeesModal = {
   id: 0,
   password: "",
   authorization: "",
+  profileImg: ""
 };
 
 export interface IPostModal {

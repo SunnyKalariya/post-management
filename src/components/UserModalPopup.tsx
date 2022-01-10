@@ -161,6 +161,22 @@ const UserModalPopup: React.FC<OwnProps> = ({ data, setOpen, open }) => {
                 </Select>
               </FormControl>
             </div>
+            <div className="form-group">
+              <TextField
+                value={user.profileImg}
+                id="title"
+                type="file"
+                name="profileImg"
+                variant="outlined"
+                className="login-input"
+                onChange={(e) =>
+                  setUser({
+                    ...user,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              />
+            </div>
             <Button
               type="button"
               className="btn btn-login text-center"

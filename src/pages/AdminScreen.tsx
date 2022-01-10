@@ -93,6 +93,7 @@ const AdminScreen = () => {
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
+              <TableCell align="left">PROFILE</TableCell>
               <TableCell align="left">NAME</TableCell>
               <TableCell align="left">EMAIL</TableCell>
               <TableCell align="left">ADDRESS</TableCell>
@@ -109,6 +110,9 @@ const AdminScreen = () => {
                 >
                   <TableCell component="th" scope="row">
                     {employee.id}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                   <img src={employee.profileImg} alt={`${employee.name}'s profile image`} />
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {employee.name}

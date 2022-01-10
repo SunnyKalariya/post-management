@@ -178,6 +178,9 @@ thead th {
 tbody {
   background-color: #edeaea;
 }
+tbody img{
+  width: 100px;
+}
 .login-input {
   margin: 10px 0 !important;
   width: 100%;

@@ -71,7 +71,7 @@ const CardComponent: React.FC<OwnProps> = ({
           title={userDetail.name}
           subheader={userDetail.address}
         />
-        <HorizontalGallery
+        {/* <HorizontalGallery
           tiles={post.images.map((image) => (
             <div
               style={{
@@ -82,19 +82,19 @@ const CardComponent: React.FC<OwnProps> = ({
                 backgroundColor: "#D0D0D0",
                 borderRadius: 10,
               }}
-            >
+            > */}
               <CardMedia
                 component="img"
                 height="194"
-                image={image}
+                image={post.images[0]}
                 alt="Paella dish"
               />
-            </div>
+            {/* </div>
           ))}
           elementWidth={250}
           minPadding={20}
           fadeDistance={100}
-        />
+        /> */}
 
         <CardContent className="post-card-content">
           <Link to={`/post/${post.id}`} className="post-info">
