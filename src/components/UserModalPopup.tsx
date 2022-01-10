@@ -30,7 +30,6 @@ const UserModalPopup: React.FC<OwnProps> = ({ data, setOpen, open }) => {
   }, [data]);
 
   const submitHandler = () => {
-    console.log("user", user);
     if (data.id > 0) {
       userService
         .updateUsers(user)
