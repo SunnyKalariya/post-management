@@ -22,7 +22,25 @@ export const EmployeesModal: IEmployeesModal = {
   id: 0,
   password: "",
   authorization: "",
-  profileImg: ""
+  profileImg: "",
+};
+
+export interface IEmployeeError {
+  name: boolean;
+  email: boolean;
+  address: boolean;
+  profileImg: boolean;
+  authorization: boolean;
+  password: boolean;
+}
+
+export const EmployeeError: IEmployeeError = {
+  name: false,
+  email: false,
+  address: false,
+  profileImg: false,
+  authorization: false,
+  password: false,
 };
 
 export interface IPostModal {
@@ -32,7 +50,7 @@ export interface IPostModal {
   title: string;
   userId: number;
   liked: number[];
-  images:string[];
+  images: string;
 }
 
 export const PostModal: IPostModal = {
@@ -42,7 +60,7 @@ export const PostModal: IPostModal = {
   title: "",
   userId: 0,
   liked: [],
-  images: [],
+  images: "",
 };
 
 export interface IComments {
@@ -59,4 +77,3 @@ export const Commnets: IComments = {
   body: "",
   postId: 1,
 };
-

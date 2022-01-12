@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { IPostModal } from "../models/PostModal";
+import { IPostModal, PostModal } from "../models/PostModal";
 import PostServices from "../services/post-services";
 import PostModalPopup from "../components/PostModalPopup";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import CardComponent from "../components/CardComponent";
 
@@ -16,7 +16,7 @@ const PostScreen = () => {
 
   const userLogin = useSelector((state: any): any => state.userLogin);
 
-  const { userInfo } = userLogin;
+  const { userInfo, loading } = userLogin;
   useEffect(() => {
     if (!userInfo) {
       navigate("/");
@@ -28,7 +28,6 @@ const PostScreen = () => {
       .getPost()
       .then((res: any) => {
         setPosts(res.data);
-        console.log("res", res);
       })
       .catch((m: any) => {
         console.log(m);
@@ -41,26 +40,32 @@ const PostScreen = () => {
 
   return (
     <>
-      <div className="post-heading">
-        <h1>POST</h1>
-        <Button className="btn add-btn" onClick={() => setOpen(true)}>
-          Add Post
-        </Button>
-      </div>
-      <PostModalPopup setOpen={() => setOpen(false)} open={open} />
-      <Grid className="post-content">
-        {posts &&
-          posts.map((post: IPostModal) => (
-            <CardComponent
-              userInfo={userInfo}
-              post={post}
-              postService={postService}
-              getPost={() => getPost()}
-              key={post.id}
-              isDelete={false}
-            />
-          ))}
-      </Grid>
+      {loading ? (
+        <CircularProgress className="loder" />
+      ) : (
+        <>
+          <div className="post-heading">
+            <h1>POST</h1>
+            <Button className="btn add-btn" onClick={() => setOpen(true)}>
+              Add Post
+            </Button>
+          </div>
+          <PostModalPopup setOpen={() => setOpen(false)} open={open} postData={PostModal} />
+          <Grid className="post-content">
+            {posts &&
+              posts.map((post: IPostModal) => (
+                <CardComponent
+                  userInfo={userInfo}
+                  post={post}
+                  postService={postService}
+                  getPost={() => getPost()}
+                  key={post.id}
+                  isAction={false}
+                />
+              ))}
+          </Grid>
+        </>
+      )}
     </>
   );
 };

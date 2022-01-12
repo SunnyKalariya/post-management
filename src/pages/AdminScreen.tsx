@@ -8,11 +8,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { EmployeesModal, IEmployeesModal } from "../models/PostModal";
 import Button from "@mui/material/Button";
+import { EmployeesModal, IEmployeesModal } from "../models/PostModal";
 import UserModalPopup from "../components/UserModalPopup";
 import UserServices from "../services/users-services";
 import { useSelector } from "react-redux";
+import DeleteConfirmation from "../components/DeleteConfirmation";
 
 const AdminScreen = () => {
   const [employees, setEmployees] = useState<IEmployeesModal[]>();
@@ -21,6 +22,7 @@ const AdminScreen = () => {
     useState<IEmployeesModal>(EmployeesModal);
   const userService = new UserServices();
   const [open, setOpen] = useState<boolean>(false);
+  const [deletConfirm, setDeleteConfirm] = useState<boolean>(false);
   const navigate = useNavigate();
   const userLogin = useSelector((state: any): any => state.userLogin);
   const { userInfo } = userLogin;
@@ -47,6 +49,7 @@ const AdminScreen = () => {
   }, [open]);
 
   const deleteHandler = (id: number) => {
+    setDeleteConfirm(false);
     userService
       .deleteUsersById(id)
       .then((res: any) => {
@@ -96,6 +99,7 @@ const AdminScreen = () => {
               <TableCell align="left">PROFILE</TableCell>
               <TableCell align="left">NAME</TableCell>
               <TableCell align="left">EMAIL</TableCell>
+              <TableCell align="left">AUTHORIZATION</TableCell>
               <TableCell align="left">ADDRESS</TableCell>
               <TableCell align="left"></TableCell>
               <TableCell align="right">ACTIONS</TableCell>
@@ -112,13 +116,19 @@ const AdminScreen = () => {
                     {employee.id}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                   <img src={employee.profileImg} alt={`${employee.name}'s profile image`} />
+                    <img
+                      src={employee.profileImg}
+                      alt={`${employee.name}'s profile image`}
+                    />
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {employee.name}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {employee.email}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {employee.authorization}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {employee.address}
@@ -137,10 +147,17 @@ const AdminScreen = () => {
                     </Button>
                     <Button
                       className="btn"
-                      onClick={() => deleteHandler(employee.id)}
+                      onClick={() => setDeleteConfirm(true)}
                     >
                       <DeleteIcon />
                     </Button>
+
+                    <DeleteConfirmation
+                      open={deletConfirm}
+                      setOpen={() => setDeleteConfirm(false)}
+                      deleteHandler={(val: number) => deleteHandler(val)}
+                      Id={employee.id}
+                    />
                   </TableCell>
                 </TableRow>
               ))}

@@ -15,18 +15,18 @@ import CommentModalPopup from "./CommentInput";
 
 interface OwnProps {
   data: IPostModal;
-  userId: number;
+  isLike: number | undefined;
+  likeHandler: () => void;
 }
 
 const CommentPopper: React.FC<OwnProps> = ({
   data,
-  userId,
+  isLike,
+  likeHandler
 }) => {
   const [commentOpen, setCommentOpen] = useState<boolean>(false);
   const [comments, setComments] = useState<IComments[]>();
-  const [post, setPost] = useState<IPostModal>(data);
   const postService = new PostServices();
-  const isLike = data.liked.find((x): any => x === userId);
 
   const getComments = () => {
     postService
@@ -48,28 +48,6 @@ const CommentPopper: React.FC<OwnProps> = ({
       .deleteCommentsByPostId(id)
       .then((res: any) => getComments())
       .catch((error) => console.error(error));
-  };
-
-  const updatePost = (postData: IPostModal) => {
-    postService
-      .updatePost(postData)
-      .then((response) => {
-      setPost(response.data);
-      })
-      .catch((error) => console.error(error));
-  };
-
-  const likeHandler = () => {
-    !isLike && data.liked.push(userId);
-    if (isLike) {
-      var index = data.liked.indexOf(isLike);
-      if (index !== -1) {
-        data.liked.splice(index, 1);
-      }
-    }
-debugger;
-    data.likes += isLike ? -1 : 1;
-    updatePost(data);
   };
 
   const comment = (

@@ -8,8 +8,10 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import CommentPopper from "../components/CommentPopper";
-import { Clear } from "@mui/icons-material";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   EmployeesModal,
   IEmployeesModal,
@@ -17,14 +19,15 @@ import {
 } from "../models/PostModal";
 import PostServices from "../services/post-services";
 import UserServices from "../services/users-services";
-import HorizontalGallery from 'react-dynamic-carousel'
+import DeleteConfirmation from "./DeleteConfirmation";
+import PostModalPopup from "./PostModalPopup";
 
 interface OwnProps {
   userInfo: IEmployeesModal | undefined;
   post: IPostModal;
   postService: PostServices;
   getPost: (value: number) => void;
-  isDelete: boolean;
+  isAction: boolean;
 }
 
 const CardComponent: React.FC<OwnProps> = ({
@@ -32,11 +35,18 @@ const CardComponent: React.FC<OwnProps> = ({
   post,
   postService,
   getPost,
-  isDelete,
+  isAction,
 }) => {
   const userLoginId = userInfo ? userInfo.id : 0;
   const userService = new UserServices();
   const [userDetail, setUserDetail] = useState<IEmployeesModal>(EmployeesModal);
+  const [deletConfirm, setDeleteConfirm] = useState<boolean>(false);
+  const [anchorElModal, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const openModal = Boolean(anchorElModal);
+  const [openPostModal, setPostModalOpen] = useState<boolean>(false);
+  const [postInfo, setPostInfo] = useState<IPostModal>(post);
+
+  const isLike = post.liked.find((x): any => x === userLoginId);
 
   const deletePost = (id: number) => {
     postService
@@ -45,57 +55,86 @@ const CardComponent: React.FC<OwnProps> = ({
       .catch((error) => console.error(error));
   };
   useEffect(() => {
+    getPost(post.userId);
+  }, [openPostModal]);
+
+  useEffect(() => {
     userService
       .getUsersById(post.userId)
       .then((response) => setUserDetail(response.data))
       .catch((error) => console.error(error));
   }, []);
 
+  const updatePost = (postData: IPostModal) => {
+    postService
+      .updatePost(postData)
+      .then((response) => {
+      setPostInfo(response.data);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const likeHandler = () => {
+    !isLike && post.liked.push(userLoginId);
+    if (isLike) {
+      var index = post.liked.indexOf(isLike);
+      if (index !== -1) {
+        post.liked.splice(index, 1);
+      }
+    }
+    post.likes += isLike ? -1 : 1;
+    updatePost(post);
+  };
+
   return (
     <>
-      <Card className="post-card" key={post.id}>
+      <Card className="post-card" key={post.id} onDoubleClick={likeHandler}>
         <CardHeader
           avatar={<Avatar aria-label="recipe">S</Avatar>}
           action={
             <IconButton aria-label="settings">
-              {isDelete && (
-                <Button
-                  className="clear-btn"
-                  onClick={() => deletePost(post.id)}
-                >
-                  <Clear />
-                </Button>
+              {isAction && (
+                <>
+                  <Button
+                    onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+                      setAnchorEl(event.currentTarget)
+                    }
+                    className="clear-btn"
+                  >
+                    <MoreVertIcon />
+                  </Button>
+                  <Menu open={openModal} onClose={() => setAnchorEl(null)}>
+                    <MenuItem onClick={() => setPostModalOpen(true)}>
+                      Edit
+                    </MenuItem>
+                    <MenuItem onClick={() => setDeleteConfirm(true)}>
+                      Delete
+                    </MenuItem>
+                  </Menu>
+                </>
               )}
             </IconButton>
           }
           title={userDetail.name}
           subheader={userDetail.address}
         />
-        {/* <HorizontalGallery
-          tiles={post.images.map((image) => (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                width: 250,
-                backgroundColor: "#D0D0D0",
-                borderRadius: 10,
-              }}
-            > */}
-              <CardMedia
-                component="img"
-                height="194"
-                image={post.images[0]}
-                alt="Paella dish"
-              />
-            {/* </div>
-          ))}
-          elementWidth={250}
-          minPadding={20}
-          fadeDistance={100}
-        /> */}
-
+        <PostModalPopup
+          setOpen={() => setPostModalOpen(false)}
+          open={openPostModal}
+          postData={post}
+        />
+        <DeleteConfirmation
+          open={deletConfirm}
+          setOpen={() => setDeleteConfirm(false)}
+          deleteHandler={(value: number) => deletePost(value)}
+          Id={post.id}
+        />
+        <CardMedia
+          component="img"
+          height="194"
+          image={post.images}
+          alt="Paella dish"
+        />
         <CardContent className="post-card-content">
           <Link to={`/post/${post.id}`} className="post-info">
             <Typography component="div">
@@ -105,7 +144,7 @@ const CardComponent: React.FC<OwnProps> = ({
               <>{post.body}</>
             </Typography>
           </Link>
-          <CommentPopper data={post} userId={userLoginId} />
+          <CommentPopper data={postInfo} isLike={isLike} likeHandler={likeHandler} />
         </CardContent>
       </Card>
     </>

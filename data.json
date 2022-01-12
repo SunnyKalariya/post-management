@@ -7,11 +7,7 @@
       "likes": 0,
       "userId": 1,
       "liked": [],
-      "images": [
-        "/images/image1.jpg",
-        "/images/image1.jpg",
-        "/images/image1.jpg"
-      ]
+      "images": "/images/image1.jpg"
     },
     {
       "id": 2,
@@ -20,9 +16,7 @@
       "likes": 0,
       "userId": 2,
       "liked": [],
-      "images": [
-        "/images/image1.jpg"
-      ]
+      "images": "/images/image1.jpg"
     },
     {
       "id": 3,
@@ -31,9 +25,7 @@
       "likes": 0,
       "userId": 3,
       "liked": [],
-      "images": [
-        "/images/image1.jpg"
-      ]
+      "images": "/images/image1.jpg"
     },
     {
       "id": 4,
@@ -42,9 +34,7 @@
       "likes": 0,
       "userId": 4,
       "liked": [],
-      "images": [
-        "/images/image1.jpg"
-      ]
+      "images": "/images/image1.jpg"
     },
     {
       "id": 5,
@@ -56,9 +46,7 @@
         8,
         7
       ],
-      "images": [
-        "/images/image1.jpg"
-      ]
+      "images": "/images/image1.jpg"
     },
     {
       "body": "India is my country ",
@@ -66,9 +54,7 @@
       "likes": 2,
       "title": "India",
       "userId": 8,
-      "images": [
-        "/images/image1.jpg"
-      ],
+      "images": "/images/image1.jpg",
       "liked": [
         8,
         7
@@ -80,12 +66,19 @@
       "likes": 1,
       "title": " to make a blinded choice to reject or provident to task",
       "userId": 8,
-      "images": [
-        "/images/image1.jpg"
-      ],
+      "images": "/images/image1.jpg",
       "liked": [
         8
       ]
+    },
+    {
+      "body": "the pleasure itself, the moment in which the pain needs to be heard, and for the wise man who accuses him",
+      "id": 8,
+      "likes": 0,
+      "title": "title",
+      "userId": 8,
+      "liked": [],
+      "images": "/images/image001.png"
     }
   ],
   "comments": [
@@ -121,7 +114,7 @@
   "employees": [
     {
       "id": 1,
-      "name": "Fenny",
+      "name": "Fennys",
       "address": "Ahmedabad",
       "email": "fenny@gmail.com",
       "password": "12345",
@@ -153,7 +146,7 @@
       "email": "hetvi@gmail.com",
       "password": "12345",
       "authorization": "User",
-      "profileImg": "/images/image1.jpg"
+      "profileImg": "images/image1.jpg"
     },
     {
       "id": 5,
@@ -183,22 +176,22 @@
       "profileImg": "/images/image1.jpg"
     },
     {
-      "name": "Sunny Kalariya",
+      "name": "sunny kalariya",
       "email": "kalariyasunny23@gmail.com",
       "address": "Dhoraji",
       "id": 8,
       "password": "12345",
       "authorization": "Admin",
-      "profileImg": "/images/image1.jpg"
+      "profileImg": "/images/image001.png"
     },
     {
       "name": "mihir",
       "email": "mihirmavani11@gmail.com",
       "address": "Dhoraji",
       "id": 9,
-      "password": "12345",
-      "authorization": "Admin",
-      "profileImg": "C:/fakepath/image1.jpg"
+      "password": "SAK@t8@S",
+      "authorization": "User",
+      "profileImg": "/images/image1.jpg"
     }
   ]
 }

@@ -9,8 +9,14 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Button from "@mui/material/Button";
 import UserServices from "../services/users-services";
-import { IEmployeesModal } from "../models/PostModal";
+import {
+  IEmployeeError,
+  IEmployeesModal,
+  EmployeeError,
+} from "../models/PostModal";
 import { useSelector } from "react-redux";
+import { EMAIL, EMAILREGEX, PASSWORDREGEX } from "../utility/constants";
+import NotificationMsg from "./NotificationMsg";
 
 interface OwnProps {
   data: IEmployeesModal;
@@ -21,35 +27,82 @@ interface OwnProps {
 const UserModalPopup: React.FC<OwnProps> = ({ data, setOpen, open }) => {
   const userService = new UserServices();
   const [user, setUser] = useState<IEmployeesModal>(data);
+  const [error, setError] = useState<IEmployeeError>(EmployeeError);
+
+  const handleImg = (event: any) => {
+    const file = event.target.files[0];
+    //TODO: get image file and save to public folder
+
+    const savedPath = `/images/${file.name}`;
+    user.profileImg = savedPath;
+    setUser(user);
+  };
+
+  const handleFormChange = (event: any) => {
+    if (event.target.name === EMAIL) {
+      const isEmail = EMAILREGEX.test(event.target.value);
+      error.email = !isEmail;
+    } else {
+      const isPassword = PASSWORDREGEX.test(event.target.value);
+      error.password = !isPassword;
+    }
+    setError(error);
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value,
+    });
+  };
 
   const userLogin = useSelector((state: any): any => state.userLogin);
   const { userInfo } = userLogin;
 
+  const errorPresentOnSubmit = () => {
+    const errors = { ...error };
+    user.name === "" && (errors.name = true);
+    user.address === "" && (errors.address = true);
+    user.authorization === "" && (errors.authorization = true);
+    user.password === "" && (errors.password = true);
+    user.profileImg === "" && (errors.profileImg = true);
+    user.email === "" && (errors.email = true);
+    setError(errors);
+  };
+
   useEffect(() => {
     setUser(data);
   }, [data]);
+  console.log("data", data);
 
   const submitHandler = () => {
-    if (data.id > 0) {
-      userService
-        .updateUsers(user)
-        .then((res: any) => {
-          setUser(res.data);
-          setOpen();
-        })
-        .catch((m: any) => {
-          console.log(m);
-        });
+    if (
+      user.name &&
+      user.email &&
+      user.address &&
+      user.profileImg &&
+      user.authorization
+    ) {
+      if (data.id > 0) {
+        userService
+          .updateUsers(user)
+          .then((res: any) => {
+            setUser(res.data);
+            setOpen();
+          })
+          .catch((m: any) => {
+            console.log(m);
+          });
+      } else {
+        userService
+          .addUsers(user)
+          .then((res: any) => {
+            setUser(res.data);
+            setOpen();
+          })
+          .catch((m: any) => {
+            console.log(m);
+          });
+      }
     } else {
-      userService
-        .addUsers(user)
-        .then((res: any) => {
-          setUser(res.data);
-          setOpen();
-        })
-        .catch((m: any) => {
-          console.log(m);
-        });
+      errorPresentOnSubmit();
     }
   };
 
@@ -75,6 +128,8 @@ const UserModalPopup: React.FC<OwnProps> = ({ data, setOpen, open }) => {
                 label="User Name"
                 variant="outlined"
                 className="login-input"
+                error={error.name ? true : false}
+                helperText={error.name && "name is required"}
                 onChange={(e) =>
                   setUser({
                     ...user,
@@ -92,12 +147,9 @@ const UserModalPopup: React.FC<OwnProps> = ({ data, setOpen, open }) => {
                 label="User Email"
                 variant="outlined"
                 className="login-input"
-                onChange={(e) =>
-                  setUser({
-                    ...user,
-                    [e.target.name]: e.target.value,
-                  })
-                }
+                error={error.email ? true : false}
+                helperText={error.email && "email is required"}
+                onChange={handleFormChange}
               />
             </div>
             <div className="form-group">
@@ -109,12 +161,9 @@ const UserModalPopup: React.FC<OwnProps> = ({ data, setOpen, open }) => {
                 label="Password"
                 variant="outlined"
                 className="login-input"
-                onChange={(e) =>
-                  setUser({
-                    ...user,
-                    [e.target.name]: e.target.value,
-                  })
-                }
+                error={error.password ? true : false}
+                helperText={error.password && "password is required"}
+                onChange={handleFormChange}
               />
             </div>
             <div className="form-group">
@@ -127,6 +176,8 @@ const UserModalPopup: React.FC<OwnProps> = ({ data, setOpen, open }) => {
                 autoComplete="current-password"
                 className="login-input"
                 variant="outlined"
+                error={error.address ? true : false}
+                helperText={error.address && "email is required"}
                 onChange={(e) =>
                   setUser({
                     ...user,
@@ -163,19 +214,19 @@ const UserModalPopup: React.FC<OwnProps> = ({ data, setOpen, open }) => {
             </div>
             <div className="form-group">
               <TextField
-                value={user.profileImg}
+                //value={user.profileImg}
                 id="title"
                 type="file"
-                name="profileImg"
+                name="file"
                 variant="outlined"
                 className="login-input"
-                onChange={(e) =>
-                  setUser({
-                    ...user,
-                    [e.target.name]: e.target.value,
-                  })
-                }
+                error={error.profileImg ? true : false}
+                helperText={error.profileImg && "Image is required"}
+                onChange={(e) => handleImg(e)}
               />
+            </div>
+            <div className="user-profile-img">
+              <img src={user.profileImg} alt="" className="" />
             </div>
             <Button
               type="button"

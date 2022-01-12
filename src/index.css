@@ -89,17 +89,48 @@ code {
   text-transform: uppercase;
 }
 
-.user-profile h2 {
+.user-auth-edit h2 {
   text-align: center;
   text-transform: uppercase;
-  background-color: #4186ca;
   color: white;
+}
+.user-auth-edit {
+  display: flex;
+  background-color: #4186ca;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.user-auth-edit button{
+  padding: 4px;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 18px;
+}
+.user-auth-edit button:hover{
+  background-color: #ADCBE8;
+}
+.user-auth-edit svg{
+  color: #fff;
 }
 .user-profile {
   border: 3px solid;
   padding: 10px;
   margin: 10px;
   width: 500px;
+}
+.profile-img, .user-profile-img{
+  display: flex;
+  justify-content: center;
+}
+.profile-img img{
+  width: 250px;
+  margin-top: 10px;
+}
+.user-profile-img img{
+  width: 160px;
+  height: 120px;
+  margin-bottom: 10px;
 }
 
 .profile-container {
@@ -184,6 +215,19 @@ tbody img{
 .login-input {
   margin: 10px 0 !important;
   width: 100%;
+}
+.MuiDialog-root .MuiBackdrop-root{
+  background-color: #00000014;
+}
+.MuiDialog-container .MuiPaper-root{
+  padding: 20px;
+} 
+ .MuiPaper-root .delete-confirm {
+  margin-bottom: 20px;
+}
+.delete-btn {
+  display: flex;
+  justify-content: end;
 }
 
 /* login */
@@ -284,9 +328,8 @@ tbody img{
   border-radius: 2px;
 }
 .login-content p {
-  color: #67a5da;
+  color: #dd0000;
   font-size: 14px;
-  padding: 50px 0 80px;
 }
 .sign-up {
   color: #fff;
